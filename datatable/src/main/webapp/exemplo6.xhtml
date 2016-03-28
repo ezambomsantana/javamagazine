@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+	
+		<p:dataTable var="aluno" value="#{alunoMB.alunos}" style="width:800px;" editable="true" editMode="cell">
+		
+			<p:column headerText="Nome">
+				<p:cellEditor>
+	                  <f:facet name="output"><h:outputText value="#{aluno.nome}" /></f:facet>
+	                  <f:facet name="input"><p:inputText value="#{aluno.nome}"/></f:facet>
+	              </p:cellEditor>
+			</p:column>
+	
+			<p:column headerText="Endereço">
+				<p:cellEditor>
+	                  <f:facet name="output"><h:outputText value="#{aluno.endereco}" /></f:facet>
+	                  <f:facet name="input"><p:inputText value="#{aluno.endereco}"/></f:facet>
+	              </p:cellEditor>
+			</p:column>
+	
+			<p:column headerText="RA">
+				<p:cellEditor>
+	                  <f:facet name="output"><h:outputText value="#{aluno.ra}" /></f:facet>
+	                  <f:facet name="input"><p:inputText value="#{aluno.ra}"/></f:facet>
+	              </p:cellEditor>
+			</p:column>
+	
+			<p:column headerText="CPF">
+				<p:cellEditor>
+	                  <f:facet name="output"><h:outputText value="#{aluno.cpf}" /></f:facet>
+	                  <f:facet name="input"><p:inputText id="modelInput" value="#{aluno.cpf}"/></f:facet>
+	              </p:cellEditor>
+			</p:column>
+	
+			<p:column headerText="Curso">
+				<h:outputText value="#{aluno.curso}" />
+			</p:column>
+			
+			
+			<p:column headerText="Telefone">
+				<h:outputText value="#{aluno.telefone}" />
+			</p:column>
+					
+			<p:column headerText="Data Matrícula">
+				<h:outputText value="#{aluno.dataMatricula}" >
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+					
+		</p:dataTable>
+
+	</h:form>
+
+</h:body>
+</html>

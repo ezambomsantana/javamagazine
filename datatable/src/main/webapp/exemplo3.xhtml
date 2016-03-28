@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+
+		<p:dataTable var="aluno" value="#{alunoMB.alunos}"
+			style="width:800px;">
+			
+			<f:facet name="header">
+        		Lista de Alunos Cadastrados
+   			</f:facet>			
+			
+			<p:column headerText="Nome" sortBy="#{aluno.nome}"
+				filterBy="#{aluno.nome}">
+				<h:outputText value="#{aluno.nome}" />
+			</p:column>
+
+			<p:column headerText="Endereço" sortBy="#{aluno.endereco}"
+				filterBy="#{aluno.endereco}">
+				<h:outputText value="#{aluno.endereco}" />
+			</p:column>
+
+			<p:column headerText="RA" sortBy="#{aluno.ra}" filterBy="#{aluno.ra}">
+				<h:outputText value="#{aluno.ra}" />
+			</p:column>
+
+			<p:column headerText="CPF" sortBy="#{aluno.cpf}"
+				filterBy="#{aluno.cpf}">
+				<h:outputText value="#{aluno.cpf}" />
+			</p:column>
+
+			<p:column headerText="Curso" sortBy="#{aluno.curso}"
+				filterBy="#{aluno.curso}">
+				<h:outputText value="#{aluno.curso}" />
+			</p:column>
+
+
+			<p:column headerText="Telefone" sortBy="#{aluno.telefone}"
+				filterBy="#{aluno.telefone}">
+				<h:outputText value="#{aluno.telefone}" />
+			</p:column>
+
+			<p:column headerText="Data Matrícula" sortBy="#{aluno.dataMatricula}"
+				filterBy="#{aluno.dataMatricula}">
+				<h:outputText value="#{aluno.dataMatricula}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<f:facet name="footer">
+		        <h:outputText value="Existem " />
+		        <h:outputText value="#{fn:length(alunoMB.alunos)}" />
+		        <h:outputText value=" alunos cadastrados. " />	         
+		        
+		    </f:facet>
+
+
+		</p:dataTable>
+
+
+	</h:form>
+</h:body>
+</html>
