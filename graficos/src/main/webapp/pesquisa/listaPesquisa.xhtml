@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+	<h:form id="form">
+
+		<p:dataTable var="pesquisa" value="#{PesquisaMB.pesquisas}"
+			style="width:800px;">
+			
+			<p:column headerText="Código Pesquisa">
+				<h:outputText value="#{pesquisa.id}" />
+			</p:column>
+			
+			<p:column headerText="Número Eleitores">
+				<h:outputText value="#{pesquisa.numeroEleitores}" />
+			</p:column>
+
+			<p:column headerText="Data da Pesquisa">
+				<h:outputText value="#{pesquisa.dataPesquisa}" >
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column style="width:60px;text-align: center" headerText="Detalhes">
+				<p:commandButton update=":form:graficos"
+					oncomplete="PF('pesquisaDialog').show()" icon="ui-icon-search"
+					title="View">
+					<f:setPropertyActionListener value="#{pesquisa}"
+						target="#{PesquisaMB.pesquisaSelecionada}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>		
+		
+		
+		
+		<p:growl id="growl" showDetail="true" />
+		<p:chart type="line" model="#{PesquisaMB.graficoLinhaTempo}" style="height:300px;width:700px;">
+			<p:ajax event="itemSelect" listener="#{PesquisaMB.itemSelect}" update="growl" />
+        </p:chart> 
+        
+		<p:chart type="bar" model="#{PesquisaMB.graficoBarraLinha}" style="height:300px;width:700px;" />
+
+		<p:dialog header="Gráficos da Pesquisa" widgetVar="pesquisaDialog"
+			modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+			<p:outputPanel id="graficos" style="text-align:center;">
+				<p:chart type="pie" model="#{PesquisaMB.graficoPizzaPesquisa}" rendered="#{PesquisaMB.pesquisaSelecionada != null}" style="width:400px;height:300px" />
+				<p:chart type="bar" model="#{PesquisaMB.graficoBarraPesquisa}" rendered="#{PesquisaMB.pesquisaSelecionada != null}" style="height:300px"/>
+			</p:outputPanel>
+
+		</p:dialog>
+	</h:form>
+
+</h:body>
+</html>

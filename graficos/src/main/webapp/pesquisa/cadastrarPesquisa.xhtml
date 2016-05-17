@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<h:form>
+		<p:messages id="messages" />
+		<p:panelGrid columns="2">
+			<p:outputLabel for="numeroEleitores" value="Número de Eleitores" />
+			<p:inputText id="numeroEleitores"
+				value="#{PesquisaMB.pesquisa.numeroEleitores}" />
+			<p:outputLabel for="dataPesquisa" value="Data:" />
+			<p:calendar id="dataPesquisa"
+				value="#{PesquisaMB.pesquisa.dataPesquisa}" />
+
+		</p:panelGrid>
+		
+		<br></br>
+
+		<p:dataTable var="cp" value="#{PesquisaMB.candidatosPesquisa}"
+			style="width:800px;">
+			<p:column headerText="Nome Candidato">
+				<h:outputText value="#{cp.candidato.nomeCandidato}" />
+			</p:column>
+
+			<p:column headerText="Número Partido">
+				<h:outputText value="#{cp.candidato.numeroPartido}" />
+			</p:column>
+			
+			<p:column headerText="Número Votos">
+				<h:inputText value="#{cp.intencaoVoto}" />
+			</p:column>
+			
+		</p:dataTable>
+		<br></br>
+
+			<p:commandButton value="Cadastrar" icon="ui-icon-star"
+				action="#{PesquisaMB.cadastraPesquisa}" update="messages">
+			</p:commandButton>
+
+	</h:form>
+</h:body>
+</html>

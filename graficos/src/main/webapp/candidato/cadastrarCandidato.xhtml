@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<h:form>
+		<p:messages id="messages" />
+		<p:panelGrid columns="2">
+			<p:outputLabel for="nomeCandidato" value="Nome:" />
+			<p:inputText id="nomeCandidato" value="#{CandidatoMB.candidato.nomeCandidato}" />
+			<p:outputLabel for="nomePartido" value="Partido:" />
+			<p:inputText id="nomePartido" value="#{CandidatoMB.candidato.nomePartido}" />
+			<p:outputLabel for="numeroPartido" value="Número Partido:" />
+			<p:inputText id="numeroPartido" value="#{CandidatoMB.candidato.numeroPartido}" />
+			<p:commandButton value="Cadastrar" icon="ui-icon-star"
+				action="#{CandidatoMB.cadastraCandidato}" update="messages">
+			</p:commandButton>
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>

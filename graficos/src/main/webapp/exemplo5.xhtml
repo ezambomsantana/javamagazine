@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:form id="form">
+
+		<p:dataTable var="aluno" value="#{alunoMB.alunos}"
+			style="width:800px;" rows="5" paginator="true">
+			<p:column headerText="Nome" sortBy="#{aluno.nome}"
+				filterBy="#{aluno.nome}">
+				<h:outputText value="#{aluno.nome}" />
+			</p:column>
+
+			<p:column headerText="Endereço" sortBy="#{aluno.endereco}"
+				filterBy="#{aluno.endereco}">
+				<h:outputText value="#{aluno.endereco}" />
+			</p:column>
+
+			<p:column headerText="RA" sortBy="#{aluno.ra}" filterBy="#{aluno.ra}">
+				<h:outputText value="#{aluno.ra}" />
+			</p:column>
+
+			<p:column style="width:32px;text-align: center">
+				<p:commandButton update=":form:alunoDetail"
+					oncomplete="PF('alunoDialog').show()" icon="ui-icon-search"
+					title="View">
+					<f:setPropertyActionListener value="#{aluno}"
+						target="#{alunoMB.selectedAluno}" />
+				</p:commandButton>
+			</p:column>
+			
+		</p:dataTable>
+
+		<p:dialog header="Detalhes Aluno" widgetVar="alunoDialog" modal="true"
+			showEffect="fade" hideEffect="fade" resizable="false">
+			<p:outputPanel id="alunoDetail" style="text-align:center;">
+				<p:panelGrid columns="2"
+					rendered="#{not empty alunoMB.selectedAluno}"
+					columnClasses="label,value">
+
+					<h:outputText value="Nome:" />
+					<h:outputText value="#{alunoMB.selectedAluno.nome}" />
+
+					<h:outputText value="Endereço:" />
+					<h:outputText value="#{alunoMB.selectedAluno.endereco}" />
+
+					<h:outputText value="RA:" />
+					<h:outputText value="#{alunoMB.selectedAluno.ra}" />
+
+					<h:outputText value="Curso:" />
+					<h:outputText value="#{alunoMB.selectedAluno.curso}" />
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
+
+	</h:form>
+</h:body>
+</html>
